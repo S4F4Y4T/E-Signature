@@ -81,9 +81,17 @@ class FpdfService
     public function savePdf(FPDI $pdf, string $filename, string $path): string
     {
         $fullPath = storage_path("app/{$path}{$filename}");
+        $directory = dirname($fullPath);
+
+        // Check if the directory exists, if not, create it
+        if (!is_dir($directory)) {
+            mkdir($directory, 0777, true); // The 'true' flag allows creation of nested directories
+        }
+
         $pdf->Output($fullPath, 'F');
         return $filename;
     }
+
 
     private function calculateImageSize(string $path, ?int $height, ?int $width): array
     {

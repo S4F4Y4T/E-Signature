@@ -89,6 +89,12 @@ class SignatureService
             ->encode('png', 80);
 
         $signaturePath = config('documents.storage_paths.signature') . uniqid() . '.png';
+        $directory = dirname($signaturePath);
+
+        if (!Storage::exists($directory)) {
+            Storage::makeDirectory($directory); // Create directory if it doesn't exist
+        }
+
         Storage::put($signaturePath, $image);
 
         return $signaturePath;
@@ -162,6 +168,11 @@ class SignatureService
 
     private function generateSignatureCertificate($signer): string
     {
+        $folderPath = config('documents.storage_paths.certificate');
+        if (!Storage::exists($folderPath)) {
+            Storage::makeDirectory($folderPath, 0755, true);
+        }
+
         $signer->load(['document.signers' => fn($query) => $query->where('type', '!=', SignerType::SENDER)]);
 
         $pdf = Pdf::setOption([
