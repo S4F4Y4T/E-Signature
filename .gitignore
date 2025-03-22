@@ -60,4 +60,5 @@ public/mockServiceWorker.js
 !.env.example
 
 /storage/*
-
+!/storage/app/public/
+!/storage/app/public/documents/*
