@@ -1,36 +1,66 @@
-# vue
+# E-Signature
 
-This template should help get you started developing with Vue 3 in Vite.
+E-Signature is a digital document signing system where a sender can upload a document, add signers, and send invitations. Signers can then log in and add their digital signatures to the PDF document.
 
-## Recommended IDE Setup
+## Features
+- Upload documents for e-signing.
+- Add multiple signers to a document.
+- Send email invitations to signers.
+- Sign documents digitally through the web interface.
+- Secure and efficient document handling.
 
-[VS Code](https://code.visualstudio.com/) + [Volar](https://marketplace.visualstudio.com/items?itemName=johnsoncodehk.volar) (and disable Vetur).
+## Installation
 
-## Type Support for `.vue` Imports in TS
+### Clone the Repository
+```bash
+git clone https://github.com/S4F4Y4T/E-Signature.git
+cd E-Signature
+```
 
-Since TypeScript cannot handle type information for `.vue` imports, they are shimmed to be a generic Vue component type by default. In most cases this is fine if you don't really care about component prop types outside of templates.
-
-However, if you wish to get actual prop types in `.vue` imports (for example to get props validation when using manual `h(...)` calls), you can run `Volar: Switch TS Plugin on/off` from VS Code command palette.
-
-## Customize configuration
-
-See [Vite Configuration Reference](https://vitejs.dev/config/).
-
-## Project Setup
-
-```sh
+### Install Dependencies
+```bash
+composer install
 npm install
 ```
 
-### Compile and Hot-Reload for Development
-
-```sh
-npm run dev
+### Install Required Extensions
+Ensure you have PHP 8 or higher installed along with the following PHP extensions for FPDI support:
+```bash
+sudo apt-get install php-gd php-mbstring php-xml php-bcmath
 ```
 
-### Type-Check, Compile and Minify for Production
-
-```sh
-npm run build
+### Set Up Storage Link
+```bash
+php artisan storage:link
 ```
-# E-Signature
+
+### Configure Environment
+Copy the `.env.example` file to `.env` and update the database and mail server configurations.
+```bash
+cp .env.example .env
+```
+
+### Import Postman Collection
+1. Open Postman.
+2. Import the provided Postman collection.
+3. Upload a document via Postman.
+4. Signers will receive an email invitation to sign the document.
+
+## Demo Screenshots
+Below are some screenshots from the application:
+
+![Demo Screenshot 1](demo/1.png)
+![Demo Screenshot 2](demo/2.png)
+![Demo Screenshot 3](demo/3.png)
+![Demo Screenshot 4](demo/4.png)
+![Demo Screenshot 5](demo/5.png)
+![Demo Screenshot 6](demo/6.png)
+![Demo Screenshot 7](demo/7.png)
+![Demo Screenshot 8](demo/8.png)
+![Demo Screenshot 9](demo/9.png)
+
+## License
+This project is licensed under the MIT License.
+
+## Contribution
+Feel free to fork the repository and submit pull requests to enhance the functionality.
